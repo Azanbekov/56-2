@@ -1,13 +1,21 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
 {% for post in posts_list %}
-    <div style="border: 1px solid black; margin: 10px; padding: 10px;">
-    <h1>{{post.title}}</h1>
-    <p>{{post.content}}</p>
-    <p>{{post.rate}}</p>
-    <p>{{post.created}}</p>
-    <p>{{post.updated}}</p>
-    </div>
+<div class="card" style="width: 18rem; margin-top: 18px;">
+    {% if post.image %}
+  <img class="card-img-top" src="{{post.image.url}}" alt="Card image cap">
+  {% else %}
+    <img class="card-img-top" src="{% static 'Placeholder_view_vector.svg.png' %}" alt="Card image cap">
+  {% endif %}
+  <div class="card-body">
+    <h5 class="card-title">{{ post.title }}</h5>
+    <p class="card-text">{{ post.content }}</p>
+    <p class="card-text">{{ post.rate }}</p>
+     <p class="card-text">{{ post.created_at }}</p>
+    <a href="/posts/{{post.id}}/" class="btn btn-primary">Go to post</a>
+  </div>
+</div>
 {% endfor %}
 {% endblock %}
