@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% for post in posts_list %}
+    <div style="border: 1px solid black; margin: 10px; padding: 10px;">
+    <h1>{{post.title}}</h1>
+    <p>{{post.content}}</p>
+    <p>{{post.rate}}</p>
+    <p>{{post.created}}</p>
+    <p>{{post.updated}}</p>
+    </div>
+{% endfor %}
+{% endblock %}
