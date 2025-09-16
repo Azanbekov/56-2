@@ -24,4 +24,4 @@ class PostForm2(forms.ModelForm):
         cleaned_data = super().clean()
         if title and ttitle.lower() == "Python":
             raise forms.ValidationError("Titke cannot be python")
-        return titke
+        return title

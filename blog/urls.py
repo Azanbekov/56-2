@@ -19,8 +19,13 @@ from django.urls import path
 from posts.views import task_view, html_view, post_list_view, post_detail_view, post_create_view
 from django.conf.urls.static import static
 from django.conf import settings
+from users.views import register_view, login_view
 
-urlpatterns = [
+users_patterns=[
+    path("register/", register_view), (path("login/", login_view))
+]
+
+urlpatterns = users_patterns + [
     path('admin/', admin.site.urls),
     path ('task/', task_view),
     path ('', html_view),
