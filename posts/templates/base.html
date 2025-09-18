@@ -10,12 +10,21 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        {% if request.user.is_authenticated %}
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="/posts/">Посты</a>
         </li>
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="/posts/create/">Создать пост</a>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/logout/">Выйти</a>
+          {% else %}
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/login/">Войти</a>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/register/">Регистрация</a>
         </li>
+        {% endif %}
       </form>
     </div>
   </div>

@@ -1,5 +1,5 @@
 from django import forms
-from posts.models import Post
+from posts.models import Post, Category
 
 class PostForm(forms.Form):
     image = forms.ImageField(required=True)
@@ -25,3 +25,20 @@ class PostForm2(forms.ModelForm):
         if title and ttitle.lower() == "Python":
             raise forms.ValidationError("Titke cannot be python")
         return title
+
+class SearchForm(forms.Form):
+    search = forms.CharField(max_length=290, min_length=1, required=False)
+    category_id = forms.ModelChoiceField(queryset=Category.objects.all(), required=False, label="Category")
+    orderings = (
+        ("created_at", "По дате создания") , 
+        ("title","По названию"),
+        ("rate", "По рейтингу"),
+        ("-created_at", "По дате создания(по убыванию)"),
+        ("-title","По названию(по убыванию)"), 
+        ("-rate","По рейтингу(по убыванию)"),
+        (
+        None,
+        "---"
+        ),
+    )
+    ordering = forms.ChoiceField(choices=orderings, required=False)
